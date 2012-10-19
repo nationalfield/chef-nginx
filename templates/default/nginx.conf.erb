@@ -23,9 +23,13 @@ http {
   access_log	<%= node['nginx']['log_dir'] %>/access.log;
   <% end %>
 
-  sendfile on;
-  tcp_nopush on;
-  tcp_nodelay on;
+  sendfile <%= node['nginx']['sendfile'] ? 'on' : 'off' %>;
+  tcp_nopush <%= node['nginx']['tcp_nopush'] ? 'on' : 'off' %>;
+  tcp_nodelay <%= node['nginx']['tcp_nodelay'] ? 'on' : 'off' %>;
+
+<% node['nginx']['directives'].each do |key, val| -%>
+  <%= key %> <%= val %>;
+<% end %>
 
   <% if node['nginx']['keepalive'] == "on" %>
   keepalive_timeout  <%= node['nginx']['keepalive_timeout'] %>;

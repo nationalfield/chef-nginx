@@ -68,3 +68,10 @@ default['nginx']['server_names_hash_bucket_size'] = 64
 default['nginx']['disable_access_log'] = false
 default['nginx']['install_method'] = 'package'
 default['nginx']['default_site_enabled'] = true
+
+default['nginx']['sendfile'] = true
+default['nginx']['tcp_nopush'] = true
+default['nginx']['tcp_nodelay'] = true
+
+default['nginx']['directives'] = {}
+
